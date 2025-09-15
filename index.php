@@ -2,7 +2,7 @@
 
 /**
  * Plugin Name: Postication
- * Description: Send Creating Post Notification To Telegram Channel
+ * Description: Send Creating, Updating And Deleting Post Notification To Telegram Channel
  * Version: 1.0
  * Author: Mehdi Hamid
  * Author URI: https://github.com/MehdiHamid32/
