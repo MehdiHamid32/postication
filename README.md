@@ -1,6 +1,16 @@
 # Postication
 
-**Send Creating Post Notification To Telegram Channel**
+Contributors: yourusername
+Tags: telegram, notification, posts
+Requires at least: 5.0
+Tested up to: 6.6
+Stable tag: 1.0.0
+License: GPLv2 or later
+License URI: https://www.gnu.org/licenses/gpl-2.0.html
+
+Send Creating Post Notification To Telegram Channel
+
+== Description ==
 
 Postication is a WordPress plugin that automatically sends notifications to your Telegram channel whenever a post is **created**, **updated**, or **deleted**. It supports post title, excerpt, thumbnail, permalink, hashtags, and inline buttons.
 
