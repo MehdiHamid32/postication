@@ -3,9 +3,11 @@
 /**
  * Plugin Name: Postication
  * Description: Send Creating, Updating And Deleting Post Notification To Telegram Channel
- * Version: 1.0
+ * Version: 1.0.0
  * Author: Mehdi Hamid
  * Author URI: https://github.com/MehdiHamid32/
+ * License: GPLv2 or later
+ * License URI: https://www.gnu.org/licenses/gpl-2.0.html
  */
 
 declare( strict_types = 1 );

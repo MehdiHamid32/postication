@@ -1,10 +1,12 @@
 <?php
 if (!defined('ABSPATH')) exit;
 
-class BotSettings {
+class BotSettings
+{
     private string $option_name = 'postication_bot_settings';
 
-    public function __construct() {
+    public function __construct()
+    {
         add_action('admin_menu', [$this, 'admin_menu']);
         add_action('admin_init', [$this, 'register_settings']);
     }
@@ -24,7 +26,7 @@ class BotSettings {
 
     public function register_settings(): void
     {
-        register_setting('tcb_options_group', $this->option_name);
+        register_setting('tcb_options_group', $this->option_name, ['sanitize_callback' => [$this, 'sanitize_settings']]);
 
         add_settings_section('tcb_main', null, null, 'telegram-bot');
         add_settings_field('bot_token', "توکن ربات تلگرام", [$this, 'field_bot_token'], 'telegram-bot', 'tcb_main');
@@ -33,6 +35,20 @@ class BotSettings {
         add_settings_field('notify_create', 'ارسال نوتیفیکیشن هنگام ایجاد', [$this, 'field_notify_create'], 'telegram-bot', 'tcb_main');
         add_settings_field('notify_update', 'ارسال نوتیفیکیشن هنگام آپدیت', [$this, 'field_notify_update'], 'telegram-bot', 'tcb_main');
         add_settings_field('notify_delete', 'ارسال نوتیفیکیشن هنگام حذف', [$this, 'field_notify_delete'], 'telegram-bot', 'tcb_main');
+    }
+
+    public function sanitize_settings($input): array
+    {
+        $output = [];
+
+        $output['bot_token']     = isset($input['bot_token']) ? sanitize_text_field($input['bot_token']) : '';
+        $output['channel_chat']  = isset($input['channel_chat']) ? sanitize_text_field($input['channel_chat']) : '';
+
+        $output['notify_create'] = !empty($input['notify_create']) ? 1 : 0;
+        $output['notify_update'] = !empty($input['notify_update']) ? 1 : 0;
+        $output['notify_delete'] = !empty($input['notify_delete']) ? 1 : 0;
+
+        return $output;
     }
 
     public function field_notify_create(): void
@@ -74,7 +90,7 @@ class BotSettings {
 
     public function settings_page(): void
     {
-        ?>
+?>
         <div class="wrap">
             <h1>تنظیمات ربات تلگرام</h1>
             <form method="post" action="options.php">
@@ -86,10 +102,11 @@ class BotSettings {
                 ?>
             </form>
         </div>
-        <?php
+<?php
     }
 
-    private function get_settings() {
+    private function get_settings()
+    {
         return get_option($this->option_name, []);
     }
 }
